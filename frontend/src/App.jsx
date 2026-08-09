@@ -10,8 +10,23 @@ import AccusationScreen from './components/AccusationScreen';
 import ResultsScreen from './components/ResultsScreen';
 import CaseMechanics from './components/CaseMechanics';
 
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || (import.meta.env.DEV ? 'http://localhost:3005' : window.location.origin);
-const socket = io(SERVER_URL);
+// Subpath-aware helpers for production under /mystery/
+const getSubpath = () => {
+  if (import.meta.env.DEV) return '';
+  return window.location.pathname.replace(/\/$/, ''); // e.g. '/mystery'
+};
+
+const getApiUrl = (endpoint) => {
+  if (import.meta.env.DEV) return `http://localhost:3005${endpoint}`;
+  return `${getSubpath()}${endpoint}`;
+};
+
+const socketPath = import.meta.env.DEV ? '/socket.io' : `${getSubpath()}/socket.io`;
+const socketUrl = import.meta.env.DEV ? 'http://localhost:3005' : window.location.origin;
+
+const socket = io(socketUrl, {
+  path: socketPath
+});
 
 export default function App() {
   const [inRoom, setInRoom] = useState(false);
@@ -61,7 +76,7 @@ export default function App() {
   // Fetch full case data when caseId changes
   useEffect(() => {
     if (inRoom && caseId) {
-      fetch(`${SERVER_URL}/api/cases/${caseId}`)
+      fetch(getApiUrl(`/api/cases/${caseId}`))
         .then(res => res.json())
         .then(data => {
           setCaseData(data);
@@ -226,7 +241,7 @@ export default function App() {
       <main>
         {activeTab === 'cases' && (
           <CaseSelect
-            serverUrl={SERVER_URL}
+            serverUrl={getApiUrl('')}
             activeCaseId={caseId}
             onSelectCase={handleSelectCase}
             roomCode={roomCode}
