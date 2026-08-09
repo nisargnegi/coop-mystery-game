@@ -1,0 +1,234 @@
+{
+  "id": "beneath-still-waters",
+  "title": "Beneath Still Waters",
+  "genre": "Modern Eco-Thriller",
+  "difficulty": "⭐⭐ (Intermediate)",
+  "playtime": "~30 min",
+  "themeColor": "#10b981",
+  "summary": "Environmental activist Dana Marsh is found drowned in Lake Morrow. A cryptic voicemail sent 20 minutes earlier hints at illegal chemical dumping.",
+  "briefing": "Lake Morrow, Oregon, Present Day. Morning fog hovers over the cold water. Dana Marsh, 31, prominent environmental scientist, is pulled from the reed bed near the north dam. Sheriff Dawson quickly calls it a tragic kayak accident. But 20 minutes before her death, Dana left a panicked voicemail to her research partner: 'I got the water samples from the spillway. Morrow Chemical is dumping Benzene into the reservoir. They saw me—someone's following my boat!' Investigative reporters arrive to uncover the truth.",
+  "mechanicType": "evidenceLab",
+  "mechanicTitle": "Evidence Lab",
+  "mechanicDescription": "Combine raw water samples, documents, and lab reports in the lab panel to forge breakthrough composite evidence.",
+  "startingLocations": ["lake-shore", "danas-cabin"],
+  "locations": [
+    {
+      "id": "lake-shore",
+      "name": "Lake Morrow Shore (Crime Scene)",
+      "description": "Overturned yellow kayak washes in gentle waves. Police tape flutters against pine trees.",
+      "suspects": [],
+      "hotspots": [
+        {
+          "id": "kayak-hull",
+          "name": "Dana's Kayak Hull",
+          "description": "Deep scuffs and red paint transfer on the stern—her kayak was deliberately rammed by a larger motorboat!",
+          "unlocksClueId": "kayak-rammed-damage"
+        },
+        {
+          "id": "water-sample-flask",
+          "name": "Floating Sample Flask",
+          "description": "Sealed glass collection bottle containing murky lake water from the dam spillway.",
+          "unlocksClueId": "raw-spillway-water-flask"
+        }
+      ]
+    },
+    {
+      "id": "danas-cabin",
+      "name": "Dana's Research Cabin",
+      "description": "Microscopes, water testing kits, and map pin-boards tracking industrial runoff.",
+      "suspects": [
+        {
+          "id": "becky",
+          "name": "Becky Chen",
+          "description": "28, Dana's lab partner. Shaken, holding a recording device.",
+          "dialogueOptions": [
+            {
+              "id": "ask-voicemail",
+              "text": "Play the voicemail Dana sent you.",
+              "response": "'Becky! I have the water sample from the spillway! Benzene levels are 100x legal limit! Morrow Chemical is dumping directly into the municipal supply! Someone in a red workboat is chasing me—!' [Static/Splash]",
+              "unlocksClueId": "dana-panicked-voicemail"
+            },
+            {
+              "id": "ask-threats",
+              "text": "Was Dana being threatened?",
+              "response": "Frank Morrow III called our cabin yesterday threatening to sue us into bankruptcy if we published our water reports!",
+              "unlocksClueId": "morrow-lawsuit-threat"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "mass-spec-machine",
+          "name": "Water Testing Mass Spectrometer",
+          "description": "Analyzing raw spillway water with Dana's lab calibration yields chemical proof of industrial Benzene dumping.",
+          "unlocksClueId": "benzene-toxicity-proof",
+          "unlocksLocationId": "town-hall"
+        }
+      ]
+    },
+    {
+      "id": "town-hall",
+      "name": "Morrow Town Hall & Permit Office",
+      "description": "Oak paneling, municipal land deeds, and public hearing posters.",
+      "suspects": [
+        {
+          "id": "judith",
+          "name": "Councilwoman Judith Vargas",
+          "description": "55, Town Council President facing re-election next month.",
+          "dialogueOptions": [
+            {
+              "id": "ask-plant-permits",
+              "text": "Did you grant Morrow Chemical an exemption from environmental testing?",
+              "response": "The plant provides 600 local jobs! Dana Marsh was an outsider trying to destroy our local economy!",
+              "unlocksClueId": "vargas-plant-defense"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "campaign-records",
+          "name": "Vargas Campaign Contributions",
+          "description": "Public records show Frank Morrow III donated $150,000 to Judith Vargas's re-election campaign last week.",
+          "unlocksClueId": "vargas-campaign-bribe",
+          "unlocksLocationId": "chemical-plant"
+        }
+      ]
+    },
+    {
+      "id": "chemical-plant",
+      "name": "Morrow Chemical Plant Guardhouse",
+      "description": "Chain-link fences, danger hazard signs, security cameras scanning entry roads.",
+      "suspects": [
+        {
+          "id": "frank-morrow",
+          "name": "Frank Morrow III",
+          "description": "45, CEO of Morrow Chemical. Arrogant, tailored suit.",
+          "dialogueOptions": [
+            {
+              "id": "ask-dumping",
+              "text": "Dana Marsh found Benzene dumping from your spillway pipe.",
+              "response": "Complete fiction! Our waste treatment facilities operate under strict state regulations! Dana drowned because she was careless on the water!",
+              "unlocksClueId": "frank-denies-dumping"
+            },
+            {
+              "id": "confront-red-boat",
+              "text": "The plant maintains a red hull maintenance workboat.",
+              "response": "Hank Greer was operating the workboat last night doing routine line checks. He didn't see any kayak!",
+              "requiredClueId": "red-workboat-log"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "plant-boat-dock",
+          "name": "Plant Boat Dock & Harbor",
+          "description": "Red maintenance workboat docked. Scraped yellow paint on the bow matching Dana's kayak!",
+          "unlocksClueId": "red-workboat-log",
+          "unlocksLocationId": "rusty-anchor-bar"
+        }
+      ]
+    },
+    {
+      "id": "rusty-anchor-bar",
+      "name": "The Rusty Anchor Tavern",
+      "description": "Rough waterfront bar frequented by chemical plant workers.",
+      "suspects": [
+        {
+          "id": "hank",
+          "name": "Hank Greer",
+          "description": "40, Plant Foreman & Boat Operator. Stares into his beer mug with bloodshot eyes.",
+          "dialogueOptions": [
+            {
+              "id": "ask-night-boat",
+              "text": "Were you driving the red workboat near the dam spillway last night?",
+              "response": "Frank Morrow told me to go out and scare her! He said she was stealing company property! I didn't mean to ram her kayak! She fell in... the current took her before I could pull her up!",
+              "unlocksClueId": "hank-confession-ramming"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "bar-receipts",
+          "name": "Hank's Bar Tab",
+          "description": "Hank drank heavily after midnight, repeatedly saying 'I killed her, Frank made me do it.'",
+          "unlocksClueId": "hank-bar-breakdown",
+          "unlocksLocationId": "sheriff-station"
+        }
+      ]
+    },
+    {
+      "id": "sheriff-station",
+      "name": "County Sheriff Station",
+      "description": "Sheriff's office overlooking the lake road.",
+      "suspects": [
+        {
+          "id": "sheriff-dawson",
+          "name": "Sheriff Roy Dawson",
+          "description": "50, County Sheriff. Boots on desk, eating a sandwich.",
+          "dialogueOptions": [
+            {
+              "id": "ask-autopsy",
+              "text": "Why did you sign off on an accidental drowning before the autopsy finished?",
+              "response": "Look, kid. Lake Morrow gets dark. Kayaks flip. Case closed.",
+              "unlocksClueId": "dawson-hasty-closure"
+            },
+            {
+              "id": "confront-coverup",
+              "text": "We have Hank Greer's confession that Morrow ordered him to attack Dana.",
+              "response": "You... you got Hank talking? Damn it... I told Frank he couldn't sweep a homicide under the rug!",
+              "requiredClueId": "hank-confession-ramming"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "sheriff-safe",
+          "name": "Evidence Locker",
+          "description": "Dana's actual water sample flask was confiscated by Sheriff Dawson to destroy evidence.",
+          "unlocksClueId": "dawson-evidence-suppression",
+          "unlocksLocationId": "spillway"
+        }
+      ]
+    },
+    {
+      "id": "spillway",
+      "name": "The Dam Spillway Gate",
+      "description": "Roaring water cascades down concrete walls. Industrial waste pipe concealed behind the torrent.",
+      "suspects": [],
+      "hotspots": [
+        {
+          "id": "waste-discharge-pipe",
+          "name": "Concealed Chemical Pipe",
+          "description": "Secret bypass pipe leading directly from Morrow Chemical's main vats, bypassing municipal meters.",
+          "unlocksClueId": "illegal-bypass-pipe-found"
+        }
+      ]
+    }
+  ],
+  "clues": [
+    { "id": "kayak-rammed-damage", "name": "Rammed Kayak Hull", "description": "Yellow kayak has red boat paint scraped onto stern.", "type": "physical" },
+    { "id": "raw-spillway-water-flask", "name": "Raw Water Flask", "description": "Water sample recovered from spillway discharge point.", "type": "physical" },
+    { "id": "dana-panicked-voicemail", "name": "Panicked Voicemail", "description": "Dana recorded boat chasing her while reporting Benzene dumping.", "type": "digital" },
+    { "id": "morrow-lawsuit-threat", "name": "Frank Morrow Threat", "description": "CEO Frank Morrow threatened Dana into silence.", "type": "testimony" },
+    { "id": "benzene-toxicity-proof", "name": "Benzene Lab Proof", "description": "Mass spec proves 100x illegal Benzene contamination.", "type": "document" },
+    { "id": "vargas-plant-defense", "name": "Vargas Defense", "description": "Councilwoman defending plant for economic reasons.", "type": "testimony" },
+    { "id": "vargas-campaign-bribe", "name": "Campaign Bribe", "description": "Morrow donated $150,000 to Vargas before vote.", "type": "document" },
+    { "id": "frank-denies-dumping", "name": "Frank Denial", "description": "CEO Frank Morrow denies all dumping allegations.", "type": "testimony" },
+    { "id": "red-workboat-log", "name": "Red Workboat Match", "description": "Plant red workboat has matching yellow paint scuffs on bow.", "type": "physical" },
+    { "id": "hank-confession-ramming", "name": "Hank Ramming Confession", "description": "Foreman Hank confesses Frank Morrow ordered him to attack Dana.", "type": "testimony" },
+    { "id": "hank-bar-breakdown", "name": "Hank Bar Breakdown", "description": "Hank admitted guilt to patrons at Rusty Anchor bar.", "type": "testimony" },
+    { "id": "dawson-hasty-closure", "name": "Sheriff Hasty Closure", "description": "Sheriff ruled death accidental without autopsy.", "type": "document" },
+    { "id": "dawson-evidence-suppression", "name": "Evidence Suppression", "description": "Sheriff hid original water sample flask in safe.", "type": "document" },
+    { "id": "illegal-bypass-pipe-found", "name": "Illegal Bypass Pipe", "description": "Secret pipe bypassing municipal chemical meters found.", "type": "physical" }
+  ],
+  "solution": {
+    "killer": "frank-morrow",
+    "requiredClues": ["dana-panicked-voicemail", "red-workboat-log", "hank-confession-ramming"],
+    "explanation": "Frank Morrow III ordered plant foreman Hank Greer to use the company's red workboat to intercept and scare Dana Marsh after she discovered Morrow Chemical's illegal Benzene bypass pipe. Hank rammed her kayak in the dark near the spillway, knocking her into the current, while Sheriff Dawson attempted to cover up the murder by suppressing evidence and declaring it an accident."
+  }
+}

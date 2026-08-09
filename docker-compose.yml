@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  coop-mystery-game:
+    build: .
+    container_name: coop-mystery-game
+    restart: unless-stopped
+    ports:
+      - "3005:3005"
+    environment:
+      - PORT=3005

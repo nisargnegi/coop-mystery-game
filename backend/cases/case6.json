@@ -1,0 +1,204 @@
+{
+  "id": "codec-killer",
+  "title": "The Codec Killer",
+  "genre": "2077 Cyberpunk Noir",
+  "difficulty": "⭐⭐⭐ (Hard)",
+  "playtime": "~40 min",
+  "themeColor": "#ec4899",
+  "summary": "Victims in Neo-Shanghai are found dead with their neural codecs remotely wiped. Zero, a young netrunner, is the latest casualty.",
+  "briefing": "Neo-Shanghai, Sector 9, 2077. Rain drips through holographic neon billboards onto steam vents. A serial killer known as the 'Codec Slasher' is targeting high-profile netrunners. Each victim is killed via physical trauma, but only AFTER their bio-neural memory codec (the chip storing personality, memories, and identity) is remotely fried and wiped clean. Private detectives hired by the family of the latest victim—an infamous 22-year-old hacker alias 'Zero'—must hack through corporate encrypted data to catch the assassin.",
+  "mechanicType": "decryptionPuzzles",
+  "mechanicTitle": "Data Decryption Puzzles",
+  "mechanicDescription": "Solve co-op cipher key puzzles where Player 1 receives the matrix node while Player 2 gets the decryption hash.",
+  "startingLocations": ["zeros-apartment", "neon-bazaar"],
+  "locations": [
+    {
+      "id": "zeros-apartment",
+      "name": "Zero's High-Rise Apartment",
+      "description": "Holographic monitors flicker wildly. Cyberdeck cooling fans hum. Zero slumps across his gaming chair, neural port smoking.",
+      "suspects": [],
+      "hotspots": [
+        {
+          "id": "fried-codec-port",
+          "name": "Zero's Neural Interface Port",
+          "description": "The bio-chip port behind his ear was hit with a 10,000-volt high-frequency EMP override signal. Memory bank zeroed out completely.",
+          "unlocksClueId": "wiped-neural-codec"
+        },
+        {
+          "id": "encrypted-cyberdeck",
+          "name": "Zero's Custom Cyberdeck",
+          "description": "An encrypted data drive contains a locked file: 'SYNAPSE_BACKDOOR_EXPOSE.DAT'. Requires twin key decryption.",
+          "unlocksClueId": "encrypted-synapse-exploit-file"
+        }
+      ]
+    },
+    {
+      "id": "neon-bazaar",
+      "name": "The Neon Bazaar",
+      "description": "Underground tech bazaar packed with noodle stalls, cyber-ware vendors, and black market ripperdocs.",
+      "suspects": [
+        {
+          "id": "razor",
+          "name": "Razor",
+          "description": "35, Black market hardware dealer. Cybereyes glow red in the dark.",
+          "dialogueOptions": [
+            {
+              "id": "ask-codec-override",
+              "text": "Did you sell Zero a military-grade neural codec?",
+              "response": "Zero bought a raw Synapse V-9 chip from me last week! But he said he found a factory backdoor that let Synapse Corp erase anyone's memories remotely!",
+              "unlocksClueId": "factory-backdoor-revelation"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "vendor-terminal",
+          "name": "Vendor Transaction Terminal",
+          "description": "Logs show Dr. Tanaka bought 5 military EMP override injectors using Synapse Corp corporate accounts.",
+          "unlocksClueId": "tanaka-emp-purchases",
+          "unlocksLocationId": "synapse-hq"
+        }
+      ]
+    },
+    {
+      "id": "synapse-hq",
+      "name": "Synapse Corp Tower",
+      "description": "70-story glass skyscraper overlooking Neo-Shanghai. Armed corporate security droids patrol the lobby.",
+      "suspects": [
+        {
+          "id": "director-liang",
+          "name": "Director Victor Liang",
+          "description": "50, Synapse Corp Chief Security Officer. Cold, calculating, chrome arm replacement.",
+          "dialogueOptions": [
+            {
+              "id": "ask-codec-safety",
+              "text": "Is there a backdoor in Synapse neural codecs?",
+              "response": "Absurd allegations! Our neural chips are 100% secure. Zero was an illegal hacker who probably fried his own brain during a net-run!",
+              "unlocksClueId": "liang-corporate-denial"
+            },
+            {
+              "id": "confront-tanaka-emp",
+              "text": "Your department funded Dr. Tanaka's EMP hardware purchases.",
+              "response": "Dr. Tanaka conducts authorized medical research for our executive suite! What he does off-shift is not my concern!",
+              "requiredClueId": "tanaka-emp-purchases"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "executive-server",
+          "name": "Liang's Executive Terminal",
+          "description": "Encrypted purge order sent to Dr. Tanaka: 'TERMINATE ZERO AND WIPE CODEC BEFORE LEAK.'",
+          "unlocksClueId": "liang-purge-order-email",
+          "unlocksLocationId": "red-lantern-bar"
+        }
+      ]
+    },
+    {
+      "id": "red-lantern-bar",
+      "name": "Red Lantern Underground Bar",
+      "description": "Neon lit dive bar popular with off-grid hackers and fixers.",
+      "suspects": [
+        {
+          "id": "mei-ling",
+          "name": "Mei-Ling",
+          "description": "24, Zero's girlfriend & Synapse Corp junior programmer.",
+          "dialogueOptions": [
+            {
+              "id": "ask-zero-warning",
+              "text": "What was Zero working on before he was killed?",
+              "response": "He found out Synapse Corp was using the codec backdoor to assassinate whistleblowers! He told me Director Liang ordered Dr. Tanaka to do the dirty work!",
+              "unlocksClueId": "meiling-whistleblower-statement"
+            }
+          ]
+        },
+        {
+          "id": "ghost",
+          "name": "Ghost",
+          "description": "Legendary masked netrunner. Speaks in synthesized vocoder tones.",
+          "dialogueOptions": [
+            {
+              "id": "ask-codec-killer-identity",
+              "text": "Do you know who the Codec Killer is?",
+              "response": "The killer isn't a shadow... it's Dr. Tanaka! He uses a handheld EMP pulse tool supplied by Liang during ripperdoc surgeries!",
+              "unlocksClueId": "ghost-points-to-tanaka"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "hacker-data-drop",
+          "name": "Encrypted Data Drop Box",
+          "description": "Decrypted video snippet showing Dr. Tanaka entering Zero's apartment at 01:15 AM wearing a Synapse security coat.",
+          "unlocksClueId": "tanaka-crime-scene-video",
+          "unlocksLocationId": "cyber-clinic"
+        }
+      ]
+    },
+    {
+      "id": "cyber-clinic",
+      "name": "Dr. Tanaka's Ripperdoc Clinic",
+      "description": "Surgical lamps, hydraulic operating chairs, smells of antiseptic and scorched copper.",
+      "suspects": [
+        {
+          "id": "dr-tanaka",
+          "name": "Dr. Kenji Tanaka",
+          "description": "46, Underground Ripperdoc. Surgical laser gloves on counter.",
+          "dialogueOptions": [
+            {
+              "id": "ask-emp-tool",
+              "text": "We found military EMP injectors with your serial number.",
+              "response": "Director Liang paid me 500,000 credits per target! If I didn't wipe their codecs, Synapse Corp threatened to execute my family!",
+              "unlocksClueId": "tanaka-full-confession"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "surgical-tray",
+          "name": "EMP Codec Wiper Tool",
+          "description": "Handheld pulse tool coated with Zero's DNA and neural tissue residue.",
+          "unlocksClueId": "emp-wiper-tool-dna",
+          "unlocksLocationId": "rooftop-garden"
+        }
+      ]
+    },
+    {
+      "id": "rooftop-garden",
+      "name": "Synapse Tower Rooftop Garden",
+      "description": "Helipad and glass greenhouse looking over the glowing skyline of Neo-Shanghai.",
+      "suspects": [],
+      "hotspots": [
+        {
+          "id": "executive-helipad-log",
+          "name": "Flight Telemetry Terminal",
+          "description": "Flight logs showing Director Liang dispatched Dr. Tanaka to Zero's apartment block at midnight.",
+          "unlocksClueId": "liang-flight-dispatch-log"
+        }
+      ]
+    }
+  ],
+  "clues": [
+    { "id": "wiped-neural-codec", "name": "Wiped Neural Codec", "description": "Zero's memory chip was fried by a 10,000-volt EMP pulse.", "type": "physical" },
+    { "id": "encrypted-synapse-exploit-file", "name": "Exploit Data File", "description": "Zero's file detailing Synapse Corp's remote codec backdoor.", "type": "digital" },
+    { "id": "factory-backdoor-revelation", "name": "Codec Backdoor Intel", "description": "Razor confirms Synapse chips have factory memory wipe backdoor.", "type": "testimony" },
+    { "id": "tanaka-emp-purchases", "name": "Tanaka EMP Receipts", "description": "Tanaka bought military EMP injectors charged to Synapse Corp.", "type": "document" },
+    { "id": "liang-corporate-denial", "name": "Liang Corporate Denial", "description": "Director Liang claims Zero fried his own brain in a net-run.", "type": "testimony" },
+    { "id": "liang-purge-order-email", "name": "Liang Purge Order", "description": "Encrypted email from Liang ordering Tanaka to terminate Zero.", "type": "digital" },
+    { "id": "meiling-whistleblower-statement", "name": "Mei-Ling Whistleblower Log", "description": "Mei-Ling confirms Liang hired Tanaka to eliminate whistleblowers.", "type": "testimony" },
+    { "id": "ghost-points-to-tanaka", "name": "Ghost Intel", "description": "Ghost reveals Tanaka uses handheld EMP tool during surgeries.", "type": "testimony" },
+    { "id": "tanaka-crime-scene-video", "name": "Crime Scene Video", "description": "Video of Tanaka entering Zero's apartment at 01:15 AM.", "type": "digital" },
+    { "id": "tanaka-full-confession", "name": "Tanaka Hitman Confession", "description": "Tanaka admits Liang paid him 500,000 credits per codec murder.", "type": "testimony" },
+    { "id": "emp-wiper-tool-dna", "name": "EMP Wiper Tool", "description": "Handheld EMP tool found in Tanaka's clinic with Zero's DNA.", "type": "physical" },
+    { "id": "liang-flight-dispatch-log", "name": "Liang Flight Log", "description": "Flight logs prove Liang dispatched Tanaka to Zero's address.", "type": "digital" }
+  ],
+  "solution": {
+    "killer": "director-liang",
+    "requiredClues": ["liang-purge-order-email", "tanaka-crime-scene-video", "emp-wiper-tool-dna"],
+    "explanation": "Director Victor Liang of Synapse Corp masterminded the serial murders to protect the secret factory backdoor in Synapse neural codecs. When netrunner Zero discovered the exploit, Liang issued an encrypted purge order and dispatched ripperdoc Dr. Kenji Tanaka armed with a military-grade EMP wiper tool to execute Zero and wipe his memory chip."
+  }
+}

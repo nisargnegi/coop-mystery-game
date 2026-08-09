@@ -1,0 +1,196 @@
+{
+  "id": "signal-lost",
+  "title": "Signal Lost",
+  "genre": "2089 Sci-Fi Sci-Fi Thriller",
+  "difficulty": "⭐⭐ (Intermediate)",
+  "playtime": "~30 min",
+  "themeColor": "#06b6d4",
+  "summary": "Orbital Station ISS-7 goes silent in deep space. Specialist Reyes is ejected from the outer airlock, sealed from the bridge console.",
+  "briefing": "ISS-7 Deep Space Orbital Station, 2089. Communication with Earth suddenly severed 6 hours ago. Specialist Gabriel Reyes was found dead inside Airlock 3—ejected into the vacuum of space. The automated airlock sequence was overridden from an internal command console. The remaining 4 crew members are locked down in orbit. Remote investigators must analyze timestamped security camera feeds, telemetry logs, and biometric data to catch the killer before orbit decays.",
+  "mechanicType": "securityLogs",
+  "mechanicTitle": "Security Log Playback",
+  "mechanicDescription": "Replay timestamped camera feeds across modules between 02:00 and 03:00 UTC to track crew movements.",
+  "startingLocations": ["airlock-scene", "command-bridge"],
+  "locations": [
+    {
+      "id": "airlock-scene",
+      "name": "Airlock 3 (Crime Scene)",
+      "description": "Warning lights flash amber. The inner seal is depressurized. Frost coats the reinforced glass observation portal.",
+      "suspects": [],
+      "hotspots": [
+        {
+          "id": "override-keypad",
+          "name": "Manual Override Keypad",
+          "description": "The emergency manual lever was bypassed electronically. The command originated from Terminal-01 on the Bridge at 02:42 UTC.",
+          "unlocksClueId": "bridge-override-command"
+        },
+        {
+          "id": "suit-locker",
+          "name": "EVA Suit Storage Bay",
+          "description": "Specialist Reyes's suit was missing its primary oxygen valve—tampered with prior to the airlock cycle.",
+          "unlocksClueId": "tampered-oxygen-valve"
+        }
+      ]
+    },
+    {
+      "id": "command-bridge",
+      "name": "Command Bridge",
+      "description": "Holographic displays glow with emergency telemetry. Earth communication array shows total signal jamming.",
+      "suspects": [
+        {
+          "id": "yuri",
+          "name": "Commander Yuri Volkov",
+          "description": "48, Station Commander. Stares intensely at orbital telemetry maps.",
+          "dialogueOptions": [
+            {
+              "id": "ask-earth-signal",
+              "text": "Why is the Earth comms array offline?",
+              "response": "Solar flare interference knocked out the high-gain dish at 01:30 UTC. I issued an station-wide radio quiet order.",
+              "unlocksClueId": "yuri-flare-claim"
+            },
+            {
+              "id": "confront-directive",
+              "text": "We decoded an encrypted Earth Directive command on your terminal.",
+              "response": "That directive was CLASSIFIED! Earth ordered the termination of Project Bio-Genesis immediately!",
+              "requiredClueId": "classified-earth-directive"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "terminal-1",
+          "name": "Terminal-01 (Commander's Desk)",
+          "description": "Encrypted sub-space message from Earth Orbit Command ordering immediate quarantine and destruction of bio-samples.",
+          "unlocksClueId": "classified-earth-directive",
+          "unlocksLocationId": "crew-quarters"
+        }
+      ]
+    },
+    {
+      "id": "crew-quarters",
+      "name": "Crew Living Quarters",
+      "description": "Zero-g bunks, personal lockers, and shared dining galley.",
+      "suspects": [
+        {
+          "id": "kofi",
+          "name": "Engineer Kofi Asante",
+          "description": "36, Chief Station Engineer. Wipes grease off his cybernetic arm.",
+          "dialogueOptions": [
+            {
+              "id": "ask-airlock-maint",
+              "text": "Did you perform maintenance on Airlock 3 recently?",
+              "response": "I calibrated the pressure seals yesterday at 14:00 UTC. Everything was nominal until someone logged into Terminal-01 tonight.",
+              "unlocksClueId": "kofi-seal-calibration"
+            }
+          ]
+        },
+        {
+          "id": "sarah",
+          "name": "Lt. Sarah Park",
+          "description": "29, Navigation Pilot. Checking EVA suit suit diagnostics.",
+          "dialogueOptions": [
+            {
+              "id": "ask-eva-duty",
+              "text": "Were you scheduled for EVA duty tonight?",
+              "response": "Reyes took my shift because I had a fever. If I had gone out there... it would be ME dead right now!",
+              "unlocksClueId": "sarah-shift-swap"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "reyes-bunk",
+          "name": "Reyes's Bunk & Datapad",
+          "description": "Personal audio log: 'Volkov received secret orders from Earth. He's going to purge the lab. I'm backing up the data.'",
+          "unlocksClueId": "reyes-audio-log-backup",
+          "unlocksLocationId": "bio-lab"
+        }
+      ]
+    },
+    {
+      "id": "bio-lab",
+      "name": "Biological Research Module",
+      "description": "Centrifuge tubes, containment incubators, and glowing bio-samples.",
+      "suspects": [
+        {
+          "id": "mei",
+          "name": "Dr. Mei Zhang",
+          "description": "42, Chief Xenobiologist. Adjusting microscope laser frequency.",
+          "dialogueOptions": [
+            {
+              "id": "ask-project",
+              "text": "What were you and Reyes researching?",
+              "response": "A synthesized cellular repair enzyme! Earth Command wanted it suppressed because it neutralizes radiation sickness treatment patents!",
+              "unlocksClueId": "mei-enzyme-breakthrough"
+            },
+            {
+              "id": "ask-volkov-argument",
+              "text": "Security logs show Commander Volkov arguing with you at 02:15 UTC.",
+              "response": "He threatened to lock me in stasis if I didn't hand over the hard drives! Reyes stood up to him!",
+              "unlocksClueId": "volkov-zhang-confrontation"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "security-cam-4",
+          "name": "Bio-Lab Camera Feed #4",
+          "description": "Timestamp 02:35 UTC: Commander Volkov uses master keycard to steal Reyes's bio-data drive while Reyes was in Airlock 3.",
+          "unlocksClueId": "volkov-keycard-cam-feed",
+          "unlocksLocationId": "engine-room"
+        }
+      ]
+    },
+    {
+      "id": "engine-room",
+      "name": "Fusion Reactor Room",
+      "description": "Plasma conduit hums with high frequency energy. Warning monitors flash signal jammer active.",
+      "suspects": [],
+      "hotspots": [
+        {
+          "id": "signal-jammer",
+          "name": "Sub-space Comms Relay Panel",
+          "description": "A hardware signal jammer was inserted directly into the relay by Commander Volkov's personal biometric cipher tag at 01:30 UTC.",
+          "unlocksClueId": "volkov-hardware-jammer",
+          "unlocksLocationId": "aria-core"
+        }
+      ]
+    },
+    {
+      "id": "aria-core",
+      "name": "ARIA AI Server Core",
+      "description": "Glass server columns bathed in pulsing blue LED light.",
+      "suspects": [],
+      "hotspots": [
+        {
+          "id": "audit-log",
+          "name": "AI System Audit Log",
+          "description": "Un-deletable core record: At 02:42:10 UTC, Commander Volkov issued command OVERRIDE_AIRLOCK_DEPRESSURIZE on Terminal-01 to silene Specialist Reyes.",
+          "unlocksClueId": "aria-unalterable-audit-log"
+        }
+      ]
+    }
+  ],
+  "clues": [
+    { "id": "bridge-override-command", "name": "Bridge Airlock Command", "description": "Airlock 3 ejected Reyes via Terminal-01 override.", "type": "digital" },
+    { "id": "tampered-oxygen-valve", "name": "Sabotaged EVA Suit", "description": "Reyes's oxygen valve was loosened prior to airlock cycle.", "type": "physical" },
+    { "id": "yuri-flare-claim", "name": "Solar Flare Claim", "description": "Volkov claims solar flare caused signal outage.", "type": "testimony" },
+    { "id": "classified-earth-directive", "name": "Classified Earth Directive", "description": "Earth ordered Commander Volkov to destroy bio-lab research.", "type": "digital" },
+    { "id": "kofi-seal-calibration", "name": "Kofi Seal Check", "description": "Kofi confirms airlock seals were normal before manual override.", "type": "testimony" },
+    { "id": "sarah-shift-swap", "name": "EVA Shift Swap", "description": "Reyes took Sarah's shift last minute due to her fever.", "type": "testimony" },
+    { "id": "reyes-audio-log-backup", "name": "Reyes Audio Log", "description": "Reyes recorded Volkov planning to purge bio-data.", "type": "digital" },
+    { "id": "mei-enzyme-breakthrough", "name": "Bio-Breakthrough", "description": "Dr. Zhang's research threatened Earth pharma patents.", "type": "testimony" },
+    { "id": "volkov-zhang-confrontation", "name": "Volkov Threats", "description": "Volkov threatened Zhang & Reyes with stasis lock.", "type": "testimony" },
+    { "id": "volkov-keycard-cam-feed", "name": "Cam Feed #4 Proof", "description": "Volkov recorded stealing Reyes's drive during airlock cycle.", "type": "digital" },
+    { "id": "volkov-hardware-jammer", "name": "Biometric Jammer Tag", "description": "Hardware jammer planted by Volkov's personal biometric key.", "type": "physical" },
+    { "id": "aria-unalterable-audit-log", "name": "ARIA Core Audit", "description": "Un-erasable system log showing Volkov executed depressurization.", "type": "digital" }
+  ],
+  "solution": {
+    "killer": "yuri",
+    "requiredClues": ["bridge-override-command", "classified-earth-directive", "aria-unalterable-audit-log"],
+    "explanation": "Commander Volkov received a classified directive from Earth to destroy Dr. Zhang's bio-research. When Specialist Reyes discovered the secret order and backed up the data to expose it, Volkov jammed station comms, sabotaged Reyes's suit, and executed the airlock depressurization command from Terminal-01 on the Bridge."
+  }
+}

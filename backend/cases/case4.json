@@ -1,0 +1,210 @@
+{
+  "id": "poisoned-pawn",
+  "title": "The Poisoned Pawn",
+  "genre": "1986 Cold War Thriller",
+  "difficulty": "⭐⭐⭐ (Hard)",
+  "playtime": "~35 min",
+  "themeColor": "#ef4444",
+  "summary": "Grandmaster Viktor Petrov collapses during Game 7 of the World Chess Championship in Vienna. Thallium poison in his thermos.",
+  "briefing": "Vienna, October 1986. Cold War tensions simmer. In the Grand Hotel Ballroom, 2,000 spectators watch Game 7 of the World Chess Championship between Soviet champion Viktor Petrov and challenger Alexei Volkov. On move 34, Viktor reaches for his silver thermos, sips his herbal tea, and collapses. Thallium poisoning. He lies in a coma at Vienna General Hospital. Was this Soviet state sabotage, private extortion, or personal vengeance?",
+  "mechanicType": "deductionBoard",
+  "mechanicTitle": "Deduction Board",
+  "mechanicDescription": "Link suspects to motives, physical evidence, and timestamps on the interactive connection board.",
+  "startingLocations": ["tournament-hall", "viktor-suite"],
+  "locations": [
+    {
+      "id": "tournament-hall",
+      "name": "World Championship Stage",
+      "description": "The chess board remains frozen mid-game. Turn 34: Queen's Gambit Declined. The silver thermos sits knocked over on the green felt table.",
+      "suspects": [],
+      "hotspots": [
+        {
+          "id": "silver-thermos",
+          "name": "Viktor's Silver Thermos",
+          "description": "Police toxicology reveals high concentration of odorless Thallium sulfate mixed into green herbal tea.",
+          "unlocksClueId": "thallium-in-thermos"
+        },
+        {
+          "id": "match-notation-sheet",
+          "name": "Official Match Score Sheet",
+          "description": "Viktor had played a brilliant novel move on turn 32, forcing opponent Alexei Volkov into imminent checkmate.",
+          "unlocksClueId": "viktor-winning-position"
+        }
+      ]
+    },
+    {
+      "id": "viktor-suite",
+      "name": "Viktor's Hotel Suite (Room 402)",
+      "description": "Luxurious suite with views of the Vienna Opera House. Chess books and travel luggage scattered about.",
+      "suspects": [
+        {
+          "id": "natasha",
+          "name": "Natasha Petrov",
+          "description": "38, Viktor's wife and business manager. Sitting stiffly on the sofa.",
+          "dialogueOptions": [
+            {
+              "id": "ask-thermos-prep",
+              "text": "Who had access to Viktor's silver thermos before the match?",
+              "response": "Only Ivan, his official KGB trainer and handler! Ivan prepares Viktor's tea every afternoon in the suite kitchen without fail.",
+              "unlocksClueId": "ivan-prepares-thermos"
+            },
+            {
+              "id": "ask-defection-rumor",
+              "text": "We found two Austrian passports with fake names in your safe.",
+              "response": "Yes! Viktor and I were planning to defect to the West right after winning Game 7! We had US Embassy asylum papers hidden in his jacket!",
+              "requiredClueId": "austrian-passports"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "suite-safe",
+          "name": "Hidden Wall Safe",
+          "description": "Two forged Austrian passports and a stamped letter of political asylum from the US Embassy in Vienna.",
+          "unlocksClueId": "austrian-passports",
+          "unlocksLocationId": "hotel-bar"
+        }
+      ]
+    },
+    {
+      "id": "hotel-bar",
+      "name": "Hotel Grand Lounge Bar",
+      "description": "Dim jazz lounge, crystal chandeliers, smoke hanging in the air.",
+      "suspects": [
+        {
+          "id": "klaus",
+          "name": "Klaus Eberhardt",
+          "description": "52, Tournament Organizer & Austrian Sports Minister. Sipping cognac.",
+          "dialogueOptions": [
+            {
+              "id": "ask-match-bets",
+              "text": "Rumor says you placed heavy bets on Alexei Volkov winning the title.",
+              "response": "I am the organizer! I bet on excitement! But poisoning my own star player would ruin me financially!",
+              "unlocksClueId": "klaus-gambling-bets"
+            }
+          ]
+        },
+        {
+          "id": "maria",
+          "name": "Maria Santos",
+          "description": "31, Spanish Investigative Journalist.",
+          "dialogueOptions": [
+            {
+              "id": "ask-private-meeting",
+              "text": "You had a private meeting with Viktor in this bar last night.",
+              "response": "He promised me the exclusive story of his Western defection! He knew his handler Ivan was watching him closely.",
+              "unlocksClueId": "maria-defection-interview"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "bar-ashtray",
+          "name": "Corner Booth Ashtray",
+          "description": "Matches from the Soviet Embassy and a crumpled code telegram reading: 'PREVENT DEFECTION AT ALL COSTS.'",
+          "unlocksClueId": "soviet-prevent-defection-telegram",
+          "unlocksLocationId": "press-room"
+        }
+      ]
+    },
+    {
+      "id": "press-room",
+      "name": "International Press Center",
+      "description": "Typewriters clacking, telegraph wires buzzing with global sports coverage.",
+      "suspects": [
+        {
+          "id": "ivan",
+          "name": "Ivan Krasnov",
+          "description": "50, Official Soviet Team Trainer & Handler. Cold eyes, military posture.",
+          "dialogueOptions": [
+            {
+              "id": "ask-tea-routine",
+              "text": "Did you prepare Viktor's tea before today's match?",
+              "response": "I prepare comrade Viktor's tea every day at 13:00. It is standard physical conditioning routine.",
+              "unlocksClueId": "ivan-routine-admission"
+            },
+            {
+              "id": "confront-defection-telegram",
+              "text": "We found the Soviet Embassy telegram ordering Viktor's defection stopped.",
+              "response": "Comrade Viktor was a hero of the state! He would never defect... unless treasonous forces corrupted him.",
+              "requiredClueId": "soviet-prevent-defection-telegram"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "press-trash",
+          "name": "Trash Can behind Soviet Desk",
+          "description": "An empty glass ampoule labeled 'Thallium Sulfate - Moscow Chemical Works Depot #4'.",
+          "unlocksClueId": "moscow-thallium-ampoule",
+          "unlocksLocationId": "green-room"
+        }
+      ]
+    },
+    {
+      "id": "green-room",
+      "name": "Backstage Green Room",
+      "description": "Private rest area for players between games.",
+      "suspects": [
+        {
+          "id": "alexei",
+          "name": "Alexei Volkov",
+          "description": "26, Challenger Grandmaster. Looking shaken and exhausted.",
+          "dialogueOptions": [
+            {
+              "id": "ask-game-status",
+              "text": "Did you know Viktor was winning Game 7?",
+              "response": "He was destroying my defense! But I wanted to defeat him on the 64 squares! Poisoning him destroys my reputation forever!",
+              "unlocksClueId": "alexei-chess-integrity"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "green-room-lockers",
+          "name": "Ivan's Lockbox",
+          "description": "Duplicate key to Viktor's thermos and a pair of rubber gloves stained with liquid Thallium traces.",
+          "unlocksClueId": "ivan-thermos-key-gloves",
+          "unlocksLocationId": "opponent-suite"
+        }
+      ]
+    },
+    {
+      "id": "opponent-suite",
+      "name": "Alexei's Suite & Training Room",
+      "description": "Analysis boards filled with grandmaster opening lines.",
+      "suspects": [],
+      "hotspots": [
+        {
+          "id": "analysis-board",
+          "name": "Game 7 Analysis Board",
+          "description": "Notes proving Alexei was preparing a resignation offer on turn 35.",
+          "unlocksClueId": "alexei-resignation-proof"
+        }
+      ]
+    }
+  ],
+  "clues": [
+    { "id": "thallium-in-thermos", "name": "Thallium Tea", "description": "Thermos contained lethal Thallium sulfate.", "type": "physical" },
+    { "id": "viktor-winning-position", "name": "Winning Board Position", "description": "Viktor was guaranteed victory in Game 7.", "type": "physical" },
+    { "id": "ivan-prepares-thermos", "name": "Exclusive Tea Access", "description": "Only Ivan prepares Viktor's thermos every afternoon.", "type": "testimony" },
+    { "id": "austrian-passports", "name": "Defection Passports", "description": "Forged passports & US asylum papers found in Viktor's safe.", "type": "document" },
+    { "id": "klaus-gambling-bets", "name": "Organizer Bets", "description": "Klaus bet heavily on Alexei winning title.", "type": "document" },
+    { "id": "maria-defection-interview", "name": "Defection Interview", "description": "Journalist confirms Viktor planned defection right after match.", "type": "testimony" },
+    { "id": "soviet-prevent-defection-telegram", "name": "Embassy Order Telegram", "description": "Telegram to Ivan ordering him to prevent defection at all costs.", "type": "document" },
+    { "id": "ivan-routine-admission", "name": "Ivan Routine Admission", "description": "Ivan admits preparing tea at 13:00 before match.", "type": "testimony" },
+    { "id": "moscow-thallium-ampoule", "name": "Moscow Chemical Ampoule", "description": "Empty ampoule of Moscow-made Thallium found in Soviet trash.", "type": "physical" },
+    { "id": "alexei-chess-integrity", "name": "Alexei Integrity", "description": "Alexei wanted a fair chess victory, not a poisoned win.", "type": "testimony" },
+    { "id": "ivan-thermos-key-gloves", "name": "Ivan Poison Gloves", "description": "Rubber gloves with Thallium traces found in Ivan's lockbox.", "type": "physical" },
+    { "id": "alexei-resignation-proof", "name": "Alexei Resignation Notes", "description": "Proof Alexei was preparing to resign before collapse.", "type": "document" }
+  ],
+  "solution": {
+    "killer": "ivan",
+    "requiredClues": ["ivan-prepares-thermos", "soviet-prevent-defection-telegram", "ivan-thermos-key-gloves"],
+    "explanation": "Ivan Krasnov, official Soviet team handler and state agent, discovered Viktor Petrov was defecting to the West with US Embassy asylum papers. Following explicit Soviet Embassy telegram orders to 'prevent defection at all costs,' Ivan used his exclusive access to prepare Viktor's herbal tea, dosing the silver thermos with Moscow Chemical Thallium sulfate prior to Game 7."
+  }
+}

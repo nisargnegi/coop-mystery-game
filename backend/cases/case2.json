@@ -1,0 +1,255 @@
+{
+  "id": "iris-blackwood",
+  "title": "The Vanishing of Iris Blackwood",
+  "genre": "1920s Gothic Mystery",
+  "difficulty": "⭐⭐ (Intermediate)",
+  "playtime": "~30 min",
+  "themeColor": "#a855f7",
+  "summary": "Heiress Iris Blackwood vanishes from her bedchamber inside Blackwood Manor during a violent storm. The door and windows were locked from the inside.",
+  "briefing": "Blackwood Manor, Yorkshire Coast, 1923. Rain hammers against leaded glass windows. At midnight, screams echoed from the 3rd floor. When staff broke down the carved oak door of Iris Blackwood's room, she had vanished. The room was locked from the inside, bolt shot home. Her family fears she was taken by spirits; local police suspect foul play. Uncover the secret hidden passages of Blackwood Manor to find Iris and unmask the culprit.",
+  "mechanicType": "passages",
+  "mechanicTitle": "Hidden Passages",
+  "mechanicDescription": "Locate secret levers and passages hidden behind portraits and bookcases to unlock sealed rooms.",
+  "startingLocations": ["iris-bedroom", "grand-library"],
+  "locations": [
+    {
+      "id": "iris-bedroom",
+      "name": "Iris's Locked Bedroom",
+      "description": "Four-poster bed canopy torn, cold wind blowing through the chimney. Heavy oak door sits splintered off its brass hinges.",
+      "suspects": [],
+      "hotspots": [
+        {
+          "id": "heavy-bolt",
+          "name": "Inside Door Bolt",
+          "description": "The iron bolt was shot firmly into the door frame from inside the room. No keyhole exists on the outside.",
+          "unlocksClueId": "bolted-from-inside"
+        },
+        {
+          "id": "nightstand-vial",
+          "name": "Nightstand & Medicine Vial",
+          "description": "An amber glass vial of Dr. Ashford's Sedative Tonic. Analysis shows double the prescribed dose was emptied into Iris's night tea.",
+          "unlocksClueId": "drugged-night-tea"
+        },
+        {
+          "id": "fireplace-hearth",
+          "name": "Fireplace Hearth & Draft",
+          "description": "Despite no fire, cold damp air rushes *outward* from behind the heavy iron fire-gate. A secret lever mechanism is built into the carved gargoyle stone!",
+          "unlocksClueId": "hearth-passage-discovered",
+          "unlocksLocationId": "portrait-hall"
+        }
+      ]
+    },
+    {
+      "id": "grand-library",
+      "name": "The Grand Library",
+      "description": "Floor-to-ceiling bookshelves lined with rare occult lore and family genealogies.",
+      "suspects": [
+        {
+          "id": "edmund",
+          "name": "Edmund Blackwood",
+          "description": "29, Iris's older brother. Nervously sips scotch by the fireplace.",
+          "dialogueOptions": [
+            {
+              "id": "ask-inheritance",
+              "text": "Who stands to inherit the estate if Iris disappears?",
+              "response": "Under grandfather's strict will, if Iris isn't declared alive and present by her 25th birthday next week, the entire fortune passes directly to me.",
+              "unlocksClueId": "edmund-inheritance-clause"
+            },
+            {
+              "id": "ask-debts",
+              "text": "We found IOUs from the London Monte Carlo Club in your desk.",
+              "response": "Alright! I owe money to dangerous men! But I love my sister! I didn't harm her!",
+              "requiredClueId": "edmund-gambling-debts"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "desk-ledger",
+          "name": "Edmund's Mahogany Desk",
+          "description": "Urgent letters from London loan sharks demanding £10,000 payment by fortnight end.",
+          "unlocksClueId": "edmund-gambling-debts",
+          "unlocksLocationId": "servants-quarters"
+        }
+      ]
+    },
+    {
+      "id": "servants-quarters",
+      "name": "Servants' Quarters & Kitchen",
+      "description": "Pewter pots, drying herbs, and servant bells mounted on the brick wall.",
+      "suspects": [
+        {
+          "id": "mrs-whitmore",
+          "name": "Mrs. Whitmore",
+          "description": "62, Head Housekeeper. Has served Blackwood Manor for 40 years.",
+          "dialogueOptions": [
+            {
+              "id": "ask-tea",
+              "text": "Who prepared Iris's tea before bed?",
+              "response": "Lily the maid brewed it, but Dr. Ashford added her nightly nerve drops himself in the pantry.",
+              "unlocksClueId": "dr-ashford-tea-access"
+            },
+            {
+              "id": "ask-passages",
+              "text": "Does the Manor have hidden servants' corridors?",
+              "response": "The Old Lord Blackwood built passages during the smugglers' war. One runs from the bedroom fireplace straight to the chapel crypt!",
+              "unlocksClueId": "manor-smuggler-tunnels"
+            }
+          ]
+        },
+        {
+          "id": "lily",
+          "name": "Lily Vance",
+          "description": "21, Iris's personal maid. Red-eyed from crying.",
+          "dialogueOptions": [
+            {
+              "id": "ask-iris-mood",
+              "text": "Was Iris acting strange before retiring?",
+              "response": "She was terrified! She told me Edmund and Dr. Ashford were whispering about her inheritance late last night.",
+              "unlocksClueId": "iris-suspicion-warning"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "tea-tray",
+          "name": "Pantry Tea Prep Tray",
+          "description": "Traces of powdered Chloral Hydrate (knockout drug) found near Dr. Ashford's medical bag station.",
+          "unlocksClueId": "chloral-hydrate-traces",
+          "unlocksLocationId": "greenhouse"
+        }
+      ]
+    },
+    {
+      "id": "portrait-hall",
+      "name": "The Portrait Gallery",
+      "description": "Dark oil paintings of Blackwood ancestors gaze down menacingly.",
+      "suspects": [],
+      "hotspots": [
+        {
+          "id": "lord-blackwood-portrait",
+          "name": "1st Baron Blackwood Portrait",
+          "description": "The eye of the portrait has a peephole into Iris's room! Pressing the family crest ring on the frame unlocks a revolving door behind the canvas.",
+          "unlocksClueId": "revolving-portrait-door",
+          "unlocksLocationId": "chapel-crypt"
+        }
+      ]
+    },
+    {
+      "id": "chapel-crypt",
+      "name": "Chapel Crypt & Sub-Tunnels",
+      "description": "Cold damp stone vault beneath the family chapel. Smells of moss and ancient earth.",
+      "suspects": [
+        {
+          "id": "iris-found",
+          "name": "Iris Blackwood (Unconscious)",
+          "description": "Lies sleeping on a velvet altar couch, breathing heavily from heavy sedation.",
+          "dialogueOptions": [
+            {
+              "id": "examine-iris",
+              "text": "Check Iris's condition.",
+              "response": "She is deeply drugged but alive! A handwritten forced confession note was stuffed in her pocket.",
+              "unlocksClueId": "forced-confession-note"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "altar-note",
+          "name": "Forced Relinquishment Note",
+          "description": "A legal document transferring Iris's fortune to Edmund, typed on Dr. Ashford's office typewriter.",
+          "unlocksClueId": "typed-relinquishment-doc",
+          "unlocksLocationId": "groundskeeper-cottage"
+        }
+      ]
+    },
+    {
+      "id": "greenhouse",
+      "name": "Estate Greenhouse & Conservatory",
+      "description": "Exotic orchids and damp glass walls. Muddy footprints lead toward the groundskeeper's shed.",
+      "suspects": [
+        {
+          "id": "dr-ashford",
+          "name": "Dr. Henry Ashford",
+          "description": "54, Family Physician. Polishes his spectacles with a silk handkerchief.",
+          "dialogueOptions": [
+            {
+              "id": "ask-sedative",
+              "text": "Why did you prescribe heavy sedatives to Iris?",
+              "response": "She suffered from hysteria! It was strictly medicinal to help her sleep through the storm!",
+              "unlocksClueId": "ashford-medicinal-excuse"
+            },
+            {
+              "id": "confront-typewriter",
+              "text": "The forced confession note matches your office typewriter.",
+              "response": "Edmund made me do it! He promised to clear my gambling debts if I helped him stage her disappearance!",
+              "requiredClueId": "typed-relinquishment-doc"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "greenhouse-tunnel-entrance",
+          "name": "Drainage Trapdoor",
+          "description": "Leads directly into the crypt passage network.",
+          "unlocksClueId": "crypt-tunnel-link"
+        }
+      ]
+    },
+    {
+      "id": "groundskeeper-cottage",
+      "name": "Groundskeeper's Cottage",
+      "description": "Cozy stone cottage filled with gardening tools and lanterns.",
+      "suspects": [
+        {
+          "id": "old-tom",
+          "name": "Old Tom",
+          "description": "70, Groundskeeper. Knows every inch of Blackwood Manor.",
+          "dialogueOptions": [
+            {
+              "id": "ask-midnight-sighting",
+              "text": "Did you see anyone near the chapel crypt tonight?",
+              "response": "Saw Master Edmund carrying a heavy blanketed bundle through the greenhouse tunnel at 11:30 PM, right before the storm hit full force!",
+              "unlocksClueId": "tom-eyewitness-edmund"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "tunnel-map",
+          "name": "Estate Architectural Blueprint",
+          "description": "Detailed map showing secret passages connecting Iris's fireplace, the portrait gallery, and chapel crypt.",
+          "unlocksClueId": "full-tunnel-blueprint"
+        }
+      ]
+    }
+  ],
+  "clues": [
+    { "id": "bolted-from-inside", "name": "Bolted Door", "description": "Iris's bedroom door was shot bolted from inside.", "type": "physical" },
+    { "id": "drugged-night-tea", "name": "Drugged Tea", "description": "Iris's night tea contained double dose Chloral Hydrate.", "type": "physical" },
+    { "id": "hearth-passage-discovered", "name": "Fireplace Passage", "description": "A secret lever in the hearth opens a passageway.", "type": "physical" },
+    { "id": "edmund-inheritance-clause", "name": "Inheritance Clause", "description": "Edmund gets the entire fortune if Iris is missing by her 25th birthday.", "type": "document" },
+    { "id": "edmund-gambling-debts", "name": "£10k Gambling Debts", "description": "Edmund owes £10,000 to London loan sharks.", "type": "document" },
+    { "id": "dr-ashford-tea-access", "name": "Doctor Tea Access", "description": "Dr. Ashford added drops to Iris's tea in the pantry.", "type": "testimony" },
+    { "id": "manor-smuggler-tunnels", "name": "Smuggler Tunnel Lore", "description": "Tunnels connect bedroom fireplace directly to chapel crypt.", "type": "testimony" },
+    { "id": "iris-suspicion-warning", "name": "Iris's Fear", "description": "Iris overheard Edmund and Ashford plotting her inheritance.", "type": "testimony" },
+    { "id": "chloral-hydrate-traces", "name": "Sedative Traces", "description": "Traces of knockout drug found by Ashford's medical bag.", "type": "physical" },
+    { "id": "revolving-portrait-door", "name": "Portrait Secret Door", "description": "Revolving door behind 1st Baron portrait leads to sub-tunnels.", "type": "physical" },
+    { "id": "forced-confession-note", "name": "Forced Note", "description": "Handwritten note coercing Iris to surrender her estate.", "type": "document" },
+    { "id": "typed-relinquishment-doc", "name": "Ashford Typewriter Match", "description": "Document typed on Dr. Ashford's office typewriter.", "type": "document" },
+    { "id": "ashford-medicinal-excuse", "name": "Ashford Excuse", "description": "Doctor claims sedative was purely medicinal for storm hysteria.", "type": "testimony" },
+    { "id": "crypt-tunnel-link", "name": "Greenhouse Trapdoor", "description": "Trapdoor connects greenhouse straight to chapel crypt.", "type": "physical" },
+    { "id": "tom-eyewitness-edmund", "name": "Tom Eyewitness", "description": "Old Tom saw Edmund carrying an unconscious bundle at 11:30 PM.", "type": "testimony" },
+    { "id": "full-tunnel-blueprint", "name": "Estate Blueprints", "description": "Blueprints proving secret access route to locked room.", "type": "document" }
+  ],
+  "solution": {
+    "killer": "edmund",
+    "requiredClues": ["drugged-night-tea", "hearth-passage-discovered", "tom-eyewitness-edmund"],
+    "explanation": "Edmund Blackwood conspired with Dr. Ashford to drug Iris's tea. Once she fell unconscious in her locked room, Edmund entered through the secret fireplace passage, bolted the oak door behind him to create an impossible locked-room illusion, and carried Iris through the secret sub-tunnels to the chapel crypt to force her to sign over her inheritance before her 25th birthday."
+  }
+}

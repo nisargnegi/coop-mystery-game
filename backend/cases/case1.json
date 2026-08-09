@@ -1,0 +1,301 @@
+{
+  "id": "dells-diner",
+  "title": "The Last Order at Dell's Diner",
+  "genre": "Classic 1950s Noir",
+  "difficulty": "⭐ (Beginner)",
+  "playtime": "~20 min",
+  "themeColor": "#f59e0b",
+  "summary": "Walter Combs, Cedar Hollow's wealthiest timber tycoon, is murdered behind Dell's Diner. Everyone in town had a secret reason to want him dead.",
+  "briefing": "Cedar Hollow, 1957. Rain slickens the cobblestone alley behind Dell's Diner. Walter Combs, 52, timber magnate and self-appointed ruler of Cedar Hollow, lies dead slumped over his Buick's steering wheel. Single blunt strike to the back of the skull. The murder weapon is missing, and everyone in town had a leverage debt or grudge against him. Work with your partner to investigate all 8 locations, cross-examine the 5 suspects, and build an airtight case.",
+  "mechanicType": "timeline",
+  "mechanicTitle": "Alibi Timeline",
+  "mechanicDescription": "Match suspects to their claimed locations between 10:30 PM and 11:30 PM to uncover contradictions.",
+  "startingLocations": ["crime-scene", "dells-diner"],
+  "locations": [
+    {
+      "id": "crime-scene",
+      "name": "Crime Scene (Alley)",
+      "description": "A dark, puddle-soaked alley behind the diner. Walter's 1956 Buick Roadmaster sits idling softly with the driver's door cracked open.",
+      "suspects": [],
+      "hotspots": [
+        {
+          "id": "car-trunk",
+          "name": "Buick Trunk",
+          "description": "The trunk latch is popped open. Inside lies a spare tire, but the heavy steel tire iron slot is empty.",
+          "unlocksClueId": "missing-tire-iron"
+        },
+        {
+          "id": "coffee-cup",
+          "name": "Spilled Coffee Cup",
+          "description": "A ceramic mug bearing Dell's Diner logo lies shattered. Steam rises faintly from the spilled black coffee—he was killed mere minutes after leaving the diner.",
+          "unlocksClueId": "warm-coffee"
+        },
+        {
+          "id": "greasy-footprints",
+          "name": "Muddy Footprints",
+          "description": "Deep boot prints with heavy industrial oil residue leading away from the car toward the motel fence.",
+          "unlocksClueId": "industrial-grease-prints",
+          "unlocksLocationId": "cedar-motel"
+        }
+      ]
+    },
+    {
+      "id": "dells-diner",
+      "name": "Dell's Diner",
+      "description": "Fluorescent lights hum above red vinyl booths. The smell of burnt coffee and grease hangs thick in the air.",
+      "suspects": [
+        {
+          "id": "rosie",
+          "name": "Rosie Delgado",
+          "description": "28, Diner waitress. Wipes the counter nervously with a damp cloth.",
+          "dialogueOptions": [
+            {
+              "id": "ask-walter-departure",
+              "text": "When did Walter leave the diner tonight?",
+              "response": "He finished his cherry pie and left through the back door at exactly 10:55 PM. He paid with a $50 bill and told me to keep the change... which he NEVER does.",
+              "unlocksClueId": "walter-diner-timeline"
+            },
+            {
+              "id": "ask-rent-help",
+              "text": "We found records showing Walter paid your apartment rent for the last 12 months.",
+              "response": "It wasn't what you think! My father worked in Walter's mill for 30 years before he passed. Walter promised to look out for us. It was pure charity!",
+              "requiredClueId": "rent-receipts"
+            },
+            {
+              "id": "ask-motel-view",
+              "text": "Can you see the Cedar Motel office from the diner's back window?",
+              "response": "Clear as day. I looked out around 11:00 PM while taking out the trash. Dot Callahan's office lights were ON, but Dot was definitely NOT inside.",
+              "unlocksClueId": "rosie-motel-eyewitness"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "walters-booth",
+          "name": "Walter's Booth",
+          "description": "Booth #4. Half-eaten slice of pie and a damp napkin with scribbled phone numbers.",
+          "unlocksClueId": "napkin-number"
+        },
+        {
+          "id": "back-door",
+          "name": "Kitchen Back Exit",
+          "description": "Leads straight to the alley. The lock is old and rusted shut from the inside.",
+          "unlocksClueId": "diner-backdoor-status",
+          "unlocksLocationId": "sheriff-office"
+        }
+      ]
+    },
+    {
+      "id": "cedar-motel",
+      "name": "Cedar Motel Office",
+      "description": "A neon 'VACANCY' sign buzzes outside. The front desk is cluttered with key tags and unpaid utility bills.",
+      "suspects": [
+        {
+          "id": "dot",
+          "name": "Dot Callahan",
+          "description": "60, Owner of Cedar Motel. Chain-smokes Lucky Strikes with trembling hands.",
+          "dialogueOptions": [
+            {
+              "id": "ask-alibi",
+              "text": "Where were you between 10:30 PM and 11:15 PM?",
+              "response": "Right behind this desk tallying up my monthly accounts. I didn't leave this office once all night!",
+              "unlocksClueId": "dot-claimed-alibi"
+            },
+            {
+              "id": "confront-rosie-statement",
+              "text": "Rosie saw your office empty at 11:00 PM.",
+              "response": "She... she's mistaken! I was crouched down searching for an envelope under the desk! She couldn't have seen me!",
+              "requiredClueId": "rosie-motel-eyewitness"
+            },
+            {
+              "id": "confront-foreclosure",
+              "text": "Walter signed foreclosure papers on your motel today.",
+              "response": "That monster! He tricked me into signing a balloon mortgage. But I didn't kill him!",
+              "requiredClueId": "foreclosure-papers"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "motel-ledger",
+          "name": "Motel Financial Ledger",
+          "description": "Pages torn out from the current month. The remaining entries show obvious altered totals and skimmed cash amounts.",
+          "unlocksClueId": "altered-motel-ledger",
+          "unlocksLocationId": "maintenance-shed"
+        }
+      ]
+    },
+    {
+      "id": "maintenance-shed",
+      "name": "Motel Maintenance Shed",
+      "description": "Smells of kerosene, motor oil, and damp wood.",
+      "suspects": [],
+      "hotspots": [
+        {
+          "id": "workbench-oil",
+          "name": "Workstation & Tools",
+          "description": "A dark oily puddle on the concrete matching the industrial grease prints from the crime scene.",
+          "unlocksClueId": "shed-grease-match"
+        },
+        {
+          "id": "rag-pile",
+          "name": "Greasy Rags Container",
+          "description": "A fresh rag soaked in engine degreaser, stained with dark dried blood.",
+          "unlocksClueId": "blood-stained-rag"
+        }
+      ]
+    },
+    {
+      "id": "sheriff-office",
+      "name": "Cedar Hollow Sheriff's Post",
+      "description": "Cell block in the back, vintage police radio crackling with static.",
+      "suspects": [
+        {
+          "id": "earl",
+          "name": "Sheriff Earl Watts",
+          "description": "45, Town Sheriff. Heavy-set man leaning back in his swivel chair.",
+          "dialogueOptions": [
+            {
+              "id": "ask-earl-alibi",
+              "text": "Where were you around the time of the murder?",
+              "response": "Handling a speeding drunk driver out on Route 9 from 10:40 to 11:20 PM. Check the log dispatch book yourself.",
+              "unlocksClueId": "earl-dispatch-log"
+            },
+            {
+              "id": "ask-walter-corruption",
+              "text": "Did Walter have anything over you?",
+              "response": "Walter thought he owned this town. But I enforce the law, son. No blackmail keeps me down.",
+              "unlocksClueId": "earl-blackmail-threat"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "dispatch-book",
+          "name": "Dispatch Logbook",
+          "description": "Timestamped log confirms Sheriff Earl performed a vehicle stop on Route 9 at 10:45 PM, verified by County Officer Miller.",
+          "unlocksClueId": "earl-confirmed-alibi",
+          "unlocksLocationId": "lumber-mill"
+        }
+      ]
+    },
+    {
+      "id": "lumber-mill",
+      "name": "Combs Lumber Mill Office",
+      "description": "Walter's private office inside the sprawling timber yard. Mahogany desk and leather executive chair.",
+      "suspects": [
+        {
+          "id": "eleanor",
+          "name": "Eleanor Combs",
+          "description": "48, Walter's estranged wife. Impeccably dressed, stoic expression.",
+          "dialogueOptions": [
+            {
+              "id": "ask-eleanor-alibi",
+              "text": "Where were you tonight, Mrs. Combs?",
+              "response": "Attending the St. Jude Parish Church Social from 7 PM until 11:30 PM. Ask Father Thomas or any of the six ladies at my table.",
+              "unlocksClueId": "eleanor-church-alibi"
+            },
+            {
+              "id": "ask-marriage",
+              "text": "How was your marriage with Walter?",
+              "response": "A business arrangement for twenty years. I won't pretend to weep, but I didn't murder him.",
+              "unlocksClueId": "eleanor-inheritance-motive"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "locked-desk-drawer",
+          "name": "Executive Desk Drawer",
+          "description": "Signed foreclosure order for Cedar Motel dated today. Walter was taking Dot's motel tomorrow morning.",
+          "unlocksClueId": "foreclosure-papers"
+        },
+        {
+          "id": "rent-ledger",
+          "name": "Personal Expense Binder",
+          "description": "Check stubs showing Walter paid Rosie Delgado's rent directly to her landlord for 12 straight months.",
+          "unlocksClueId": "rent-receipts",
+          "unlocksLocationId": "jimmys-garage"
+        }
+      ]
+    },
+    {
+      "id": "jimmys-garage",
+      "name": "Gas Station & Garage",
+      "description": "Gas pumps outside, hydraulic lifts inside. The smell of gasoline is overwhelming.",
+      "suspects": [
+        {
+          "id": "jimmy",
+          "name": "Jimmy 'Preacher' Doyle",
+          "description": "34, Garage mechanic. Ex-con with grease under his fingernails.",
+          "dialogueOptions": [
+            {
+              "id": "ask-argument",
+              "text": "Eyewitnesses saw you arguing heatedly with Walter two days ago.",
+              "response": "Walter offered me a job managing his mill fleet. He wanted me to spy on his union workers. I told him to go to hell. That's all it was!",
+              "unlocksClueId": "jimmy-argument-reason"
+            },
+            {
+              "id": "ask-garage-alibi",
+              "text": "Where were you tonight?",
+              "response": "Replacing an alternator on a farm tractor right here until midnight. Ask Sheriff Earl—he drove by and saw me.",
+              "unlocksClueId": "jimmy-garage-alibi"
+            }
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "tool-chest",
+          "name": "Mechanic Tool Chest",
+          "description": "All tire irons and wrenches present and accounted for in Jimmy's set.",
+          "unlocksClueId": "jimmy-tools-intact",
+          "unlocksLocationId": "church-hall"
+        }
+      ]
+    },
+    {
+      "id": "church-hall",
+      "name": "St. Jude Parish Hall",
+      "description": "Banners from the annual charity drive hang from wooden rafters.",
+      "suspects": [],
+      "hotspots": [
+        {
+          "id": "charity-sign-in",
+          "name": "Sign-in Sheet & Roster",
+          "description": "Eleanor Combs signed in at 7:15 PM and signed out at 11:30 PM. Father Thomas signed as official witness.",
+          "unlocksClueId": "eleanor-confirmed-alibi"
+        }
+      ]
+    }
+  ],
+  "clues": [
+    { "id": "missing-tire-iron", "name": "Missing Tire Iron", "description": "Walter's steel tire iron was stolen directly from his Buick's trunk.", "type": "physical" },
+    { "id": "warm-coffee", "name": "Warm Coffee Mug", "description": "Spilled coffee was still hot when found, pinpointing attack to ~11:00 PM.", "type": "physical" },
+    { "id": "industrial-grease-prints", "name": "Grease Boot Prints", "description": "Muddy prints with industrial grease leading toward Cedar Motel fence.", "type": "physical" },
+    { "id": "walter-diner-timeline", "name": "Diner Departure", "description": "Rosie confirms Walter left Dell's Diner at 10:55 PM.", "type": "testimony" },
+    { "id": "rosie-motel-eyewitness", "name": "Empty Motel Office", "description": "Rosie saw Dot's motel office empty at 11:00 PM despite Dot's claim.", "type": "testimony" },
+    { "id": "napkin-number", "name": "Scribbled Napkin", "description": "Phone number for County Bank Foreclosure department.", "type": "document" },
+    { "id": "dot-claimed-alibi", "name": "Dot's Claimed Alibi", "description": "Dot claims she never left her desk between 10:30 PM and 11:15 PM.", "type": "testimony" },
+    { "id": "altered-motel-ledger", "name": "Altered Motel Ledger", "description": "Dot was secretly embezzling motel funds to pay personal debts.", "type": "document" },
+    { "id": "shed-grease-match", "name": "Motel Shed Grease", "description": "Grease residue in Dot's shed perfectly matches the crime scene prints.", "type": "physical" },
+    { "id": "blood-stained-rag", "name": "Blood-Stained Rag", "description": "Rag with degreaser and blood found hidden in Dot's maintenance shed.", "type": "physical" },
+    { "id": "earl-dispatch-log", "name": "Sheriff Route 9 Log", "description": "Sheriff Earl was logged on Route 9 handling a traffic stop at 10:45 PM.", "type": "document" },
+    { "id": "earl-confirmed-alibi", "name": "Sheriff Cleared", "description": "County Officer Miller confirmed Earl's presence on Route 9.", "type": "testimony" },
+    { "id": "foreclosure-papers", "name": "Foreclosure Order", "description": "Walter signed foreclosure papers today to seize Dot's motel tomorrow.", "type": "document" },
+    { "id": "rent-receipts", "name": "Rosie Rent Receipts", "description": "Walter paid Rosie's rent out of respect for her deceased father.", "type": "document" },
+    { "id": "eleanor-church-alibi", "name": "Church Social Alibi", "description": "Eleanor was at St. Jude Church Social from 7:00 to 11:30 PM.", "type": "testimony" },
+    { "id": "eleanor-confirmed-alibi", "name": "Eleanor Cleared", "description": "Church sign-in sheet & Father Thomas confirm Eleanor never left.", "type": "document" },
+    { "id": "jimmy-argument-reason", "name": "Job Offer Refusal", "description": "Jimmy refused Walter's offer to work as a mill spy.", "type": "testimony" },
+    { "id": "jimmy-tools-intact", "name": "Jimmy Tools Complete", "description": "All of Jimmy's mechanics tools are present and un-bloodied.", "type": "physical" }
+  ],
+  "solution": {
+    "killer": "dot",
+    "requiredClues": ["missing-tire-iron", "foreclosure-papers", "shed-grease-match"],
+    "explanation": "Dot Callahan discovered Walter signed foreclosure papers today to seize her motel after uncovering her embezzlement. Desperate, she snuck out of her motel office at 10:55 PM, met Walter behind Dell's Diner, grabbed the tire iron from his open trunk, and struck him down. She hid the bloodied rag in her maintenance shed where industrial grease matched the scene."
+  }
+}
