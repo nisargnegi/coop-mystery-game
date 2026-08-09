@@ -32,7 +32,7 @@ export default function CaseSelect({ serverUrl, activeCaseId, onSelectCase, room
       <div className="grid grid-3 gap-6">
         {cases.map((c) => {
           const isCurrent = c.id === activeCaseId;
-          const imageSrc = `/cases/${c.id}.png`;
+          const imageSrc = `cases/${c.id}.png`;
 
           return (
             <div 

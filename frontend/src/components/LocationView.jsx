@@ -8,7 +8,7 @@ export default function LocationView({ caseData, gameState, currentLocation, onS
 
   const unlockedLocations = gameState.unlockedLocations || [];
   const discoveredClues = gameState.discoveredClues || [];
-  const caseImageSrc = `/cases/${caseData.id}.png`;
+  const caseImageSrc = `cases/${caseData.id}.png`;
 
   return (
     <div className="animate-fade-in flex flex-col gap-6">
