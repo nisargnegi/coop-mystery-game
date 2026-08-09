@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Clock, Star, Play, CheckCircle } from 'lucide-react';
+import { Sparkles, Clock, Star, Play, CheckCircle, MapPin, Users, Key } from 'lucide-react';
 
 export default function CaseSelect({ serverUrl, activeCaseId, onSelectCase, roomCode }) {
   const [cases, setCases] = useState([]);
@@ -23,13 +23,13 @@ export default function CaseSelect({ serverUrl, activeCaseId, onSelectCase, room
   }
 
   return (
-    <div className="animate-fade-in flex flex-col gap-6">
+    <div className="animate-fade-in flex flex-col gap-5">
       <div className="text-center">
-        <h2 className="text-2xl font-bold mb-2">Select Your Investigation</h2>
-        <p className="text-sm text-gray-400">Choose a case file to investigate with your partner. All progress syncs live.</p>
+        <h2 className="text-xl sm:text-2xl font-bold mb-1">Select Your Investigation</h2>
+        <p className="text-xs sm:text-sm text-gray-400">Choose a case file to investigate with your partner. Progress syncs live.</p>
       </div>
 
-      <div className="grid grid-3 gap-6">
+      <div className="grid grid-3 gap-4 sm:gap-6">
         {cases.map((c) => {
           const isCurrent = c.id === activeCaseId;
           const imageSrc = `cases/${c.id}.png`;
@@ -45,8 +45,8 @@ export default function CaseSelect({ serverUrl, activeCaseId, onSelectCase, room
               }}
             >
               <div>
-                {/* Case Thumbnail Image */}
-                <div className="relative h-44 w-full overflow-hidden bg-slate-900 border-b border-[rgba(148,163,184,0.15)]">
+                {/* Case Thumbnail Image - Compact on mobile (h-32), responsive on desktop (sm:h-44) */}
+                <div className="relative h-32 sm:h-44 w-full overflow-hidden bg-slate-950 border-b border-[rgba(148,163,184,0.15)]">
                   <img
                     src={imageSrc}
                     alt={c.title}
@@ -55,31 +55,35 @@ export default function CaseSelect({ serverUrl, activeCaseId, onSelectCase, room
                       e.target.style.display = 'none';
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
-                  <div className="absolute top-3 left-3 right-3 flex justify-between items-center">
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
+                  
+                  <div className="absolute top-2.5 left-2.5 right-2.5 flex justify-between items-center">
                     <span className="badge backdrop-blur-md" style={{ backgroundColor: `${c.themeColor}33`, color: c.themeColor, border: `1px solid ${c.themeColor}66` }}>
                       {c.genre}
                     </span>
-                    <span className="text-xs text-white bg-slate-900/80 px-2 py-1 rounded backdrop-blur-md flex items-center gap-1 border border-white/10">
-                      <Clock size={12} /> {c.playtime}
+                    <span className="text-[11px] text-white bg-slate-950/80 px-2 py-0.5 rounded backdrop-blur-md flex items-center gap-1 border border-white/10">
+                      <Clock size={11} /> {c.playtime}
                     </span>
                   </div>
                 </div>
 
-                <div className="p-4">
-                  <h3 className="text-lg font-bold mb-2" style={{ color: isCurrent ? c.themeColor : '#fff' }}>
+                <div className="p-3.5 sm:p-4">
+                  <h3 className="text-base sm:text-lg font-bold mb-1.5" style={{ color: isCurrent ? c.themeColor : '#fff' }}>
                     {c.title}
                   </h3>
                   
-                  <p className="text-xs text-gray-300 leading-relaxed mb-4">
+                  <p className="text-xs text-gray-300 leading-relaxed mb-3">
                     {c.summary}
                   </p>
                 </div>
               </div>
 
-              <div className="p-4 pt-0">
-                <div className="flex justify-between items-center mb-3 text-xs text-gray-400 border-t border-[rgba(255,255,255,0.05)] pt-3">
-                  <span>Difficulty: <strong className="text-amber-400">{c.difficulty}</strong></span>
+              <div className="p-3.5 sm:p-4 pt-0">
+                <div className="flex justify-between items-center mb-3 text-[11px] sm:text-xs text-gray-400 border-t border-[rgba(255,255,255,0.06)] pt-2.5">
+                  <span className="flex items-center gap-1 text-amber-400 font-semibold">
+                    <Star size={12} className="fill-amber-400" /> {c.difficulty}
+                  </span>
+                  <span className="text-gray-400">Co-op Sync Ready</span>
                 </div>
 
                 <button 
