@@ -17,12 +17,12 @@ export default function LocationView({ caseData, gameState, currentLocation, onS
 
   return (
     <div className="animate-fade-in flex flex-col gap-4 sm:gap-6">
-      {/* Location Banner Image - Compact on Mobile (h-32 sm:h-48), full height on Desktop */}
-      <div className="relative h-32 sm:h-48 md:h-56 w-full rounded-xl sm:rounded-2xl overflow-hidden border border-[rgba(148,163,184,0.2)] shadow-2xl bg-slate-950">
+      {/* Location Banner Image */}
+      <div className="location-banner-container">
         <img
           src={caseImageSrc}
           alt={caseData.title}
-          className="w-full h-full object-cover brightness-90"
+          className="location-banner-img"
           onError={(e) => {
             e.target.style.display = 'none';
           }}
@@ -33,7 +33,7 @@ export default function LocationView({ caseData, gameState, currentLocation, onS
           <span className="badge mb-1 inline-block" style={{ backgroundColor: `${caseData.themeColor || '#38bdf8'}33`, color: caseData.themeColor || '#38bdf8', border: `1px solid ${caseData.themeColor || '#38bdf8'}66` }}>
             {caseData.genre}
           </span>
-          <h2 className="text-lg sm:text-2xl font-extrabold text-white drop-shadow-md flex items-center gap-2">
+          <h2 className="text-base sm:text-2xl font-extrabold text-white drop-shadow-md flex items-center gap-2">
             <MapPin size={20} style={{ color: caseData.themeColor || '#38bdf8' }} /> {currentLocation.name}
           </h2>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Clock, Star, Play, CheckCircle, MapPin, Users, Key } from 'lucide-react';
+import { Sparkles, Clock, Star, Play, CheckCircle } from 'lucide-react';
 
 export default function CaseSelect({ serverUrl, activeCaseId, onSelectCase, roomCode }) {
   const [cases, setCases] = useState([]);
@@ -45,12 +45,12 @@ export default function CaseSelect({ serverUrl, activeCaseId, onSelectCase, room
               }}
             >
               <div>
-                {/* Case Thumbnail Image - Compact on mobile (h-32), responsive on desktop (sm:h-44) */}
-                <div className="relative h-32 sm:h-44 w-full overflow-hidden bg-slate-950 border-b border-[rgba(148,163,184,0.15)]">
+                {/* Responsive Image Banner */}
+                <div className="case-img-container">
                   <img
                     src={imageSrc}
                     alt={c.title}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    className="case-img"
                     onError={(e) => {
                       e.target.style.display = 'none';
                     }}

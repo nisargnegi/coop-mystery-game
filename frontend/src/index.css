@@ -64,6 +64,66 @@ body {
   border-color: rgba(148, 163, 184, 0.25);
 }
 
+/* Responsive Image Banner Containers */
+.case-img-container {
+  position: relative;
+  width: 100%;
+  height: 130px; /* Compact & perfect resolution for mobile phones */
+  overflow: hidden;
+  background-color: #020617;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+@media (min-width: 640px) {
+  .case-img-container {
+    height: 180px; /* Tablet & desktop */
+  }
+}
+
+.case-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.case-card:hover .case-img {
+  transform: scale(1.05);
+}
+
+.location-banner-container {
+  position: relative;
+  width: 100%;
+  height: 130px; /* Compact phone header */
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  background-color: #020617;
+}
+
+@media (min-width: 640px) {
+  .location-banner-container {
+    height: 200px; /* Tablet */
+    border-radius: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .location-banner-container {
+    height: 240px; /* Desktop */
+  }
+}
+
+.location-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.85);
+}
+
 /* Typography */
 h1, h2, h3, h4 {
   font-weight: 700;
