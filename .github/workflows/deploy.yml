@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -20,20 +21,7 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            # Create project directory on VPS if it doesn't exist
             mkdir -p ~/coop-mystery-game
-            
-            # Since appleboy/ssh-action doesn't sync files by itself, 
-            # we need to clone or pull the latest code inside the directory.
-            # Assuming you have git set up on the VPS, or we use appleboy/scp-action.
-            # It's better to just pull the git repo if it's public/private with keys.
-            
-            # Alternative: If git isn't configured with keys on the VPS, 
-            # let's just use docker-compose after setting up a way to copy files.
-            # A common approach is using scp-action *before* ssh-action. 
-            
-            # NOTE: We'll pull from git to keep it simple, assuming the repo is public 
-            # OR the VPS has access to it.
             cd ~/coop-mystery-game
             if [ -d ".git" ]; then
               git reset --hard
@@ -41,6 +29,4 @@ jobs:
             else
               git clone https://github.com/${{ github.repository }} .
             fi
-            
-            # Rebuild and restart the container
-            docker-compose up -d --build
+            docker compose up -d --build
