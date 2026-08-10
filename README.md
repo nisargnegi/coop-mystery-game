@@ -1,51 +1,73 @@
-# Co-Op Mystery Game
+# 🕵️ Unsolved: Co-Op Mystery Game
 
-A real-time, 2-player cooperative unsolved mystery web game.
+A real-time, 2-player cooperative unsolved mystery web game built with React (Vite), Node.js, and Socket.io. Features 6 deeply unique cases, progressive location unlocking, evidence boards, shared detective notebooks, and formal accusation mechanics.
 
-## Setup Locally
+## 🚀 Quick Setup (Local Development)
 
-1. Install backend dependencies: `cd backend && npm install`
-2. Install frontend dependencies: `cd frontend && npm install`
-3. Run backend (Port 3005): `cd backend && node index.js`
-4. Run frontend (Port 5173): `cd frontend && npm run dev`
+1. **Backend**:
+   ```bash
+   cd backend
+   npm install
+   node index.js
+   ```
+   *(Backend runs on `http://localhost:3005`)*
 
-## Deployment & VPS Setup (Caddy)
+2. **Frontend**:
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+   *(Frontend runs on `http://localhost:5173`)*
 
-This project is configured to be deployed automatically to a VPS using GitHub Actions and Docker Compose.
+3. Open `http://localhost:5173` in two browser tabs/devices, enter the same Room Code, and play co-op!
 
-### VPS Requirements
-1. **GitHub Secrets**: Ensure `VPS_HOST`, `VPS_USERNAME`, and `VPS_SSH_KEY` are added to this GitHub repository.
-2. **Reverse Proxy (Caddy)**: Since you are already hosting `stremio-tracker` on your VPS using Caddy, you need to add a block to your Caddyfile for this game.
+---
 
-### Caddyfile Configuration
+## 🌐 Production Architecture & VPS Setup
 
-SSH into your VPS and edit your Caddyfile (usually located at `/etc/caddy/Caddyfile`).
+This repository is containerized via Docker and auto-deploys to VPS via GitHub Actions.
 
-If you want to host it on a subpath of your existing DuckDNS domain (e.g., `mytrackerstremio.duckdns.org/mystery/*`), add this to your existing block:
+### Multi-App VPS Architecture (`~/reverse-proxy/`)
+
+The VPS uses an independent global reverse proxy in `~/reverse-proxy/` to decouple Caddy and SSL from application repositories:
+
+```text
+                                              ┌──> Stremio Tracker (`~/stremio-tracker/` - Port 7000)
+User Browser ──> Global Reverse Proxy ────────┼──> Co-Op Mystery Game (`~/coop-mystery-game/` - Port 3005)
+                 (`~/reverse-proxy/` - Caddy) └──> Future Applications
+```
+
+### Global Caddyfile Route (`~/reverse-proxy/Caddyfile`)
 ```caddyfile
-mytrackerstremio.duckdns.org {
-    # ... your existing stremio-tracker config ...
-
-    # Add this for the mystery game:
+{$DUCKDNS_DOMAIN} {
+    # Co-Op Mystery Game
     handle_path /mystery/* {
-        reverse_proxy localhost:3005
+        reverse_proxy host.docker.internal:3005
+    }
+
+    # Stremio Tracker (Default)
+    handle {
+        reverse_proxy host.docker.internal:7000
+    }
+
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "no-referrer"
+    }
+
+    log {
+        output file /data/access.log
     }
 }
 ```
 
-**OR**, if you create a new subdomain (e.g., `mysterygame.duckdns.org`), add a completely new block:
-```caddyfile
-mysterygame.duckdns.org {
-    reverse_proxy localhost:3005
-}
-```
+---
 
-After updating the Caddyfile, reload Caddy on your VPS:
-```bash
-sudo systemctl reload caddy
-```
+## 📁 Case Engine & Content Expansion
 
-### Adding New Cases
-
-To add more games, simply create new JSON files in `backend/cases/`. Follow the format in `case1.json`. 
-The game will automatically load any new JSON case file placed in that directory.
+Cases are stored dynamically in `backend/cases/*.json`. To add new cases:
+1. Create `case7.json` in `backend/cases/`.
+2. Follow the JSON schema (title, genre, difficulty, locations, suspects, hotspots, clues, and solution).
+3. The server automatically loads all cases in the catalogue without requiring a restart!
